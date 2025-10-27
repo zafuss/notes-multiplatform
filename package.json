@@ -1,0 +1,38 @@
+{
+  "scripts": {
+    "prepare": "husky",
+    "lint": "eslint .",
+    "format": "prettier . --write"
+  },
+  "lint-staged": {
+    "apps/**/*.{js,jsx,ts,tsx}": [
+        "eslint --fix",
+        "prettier --write --ignore-unknown"
+    ],
+    "packages/**/*.{js,jsx,ts,tsx}": [
+        "eslint --fix",
+        "prettier --write --ignore-unknown"
+    ],
+    "apps/**/*.{json,md,css,scss,html}": [
+        "prettier --write --ignore-unknown"
+    ],
+    "packages/**/*.{json,md,css,scss,html}": [
+        "prettier --write --ignore-unknown"
+    ],
+    "apps/flutter-notes/**/*.dart": [
+        "dart format"
+    ],
+    "apps/ios-notes/**/*.swift": [
+        "swift format ."
+    ]
+    },  
+  "devDependencies": {
+    "@commitlint/cli": "^20.1.0",
+    "@commitlint/config-conventional": "^20.0.0",
+    "@eslint/js": "^9.38.0",
+    "eslint": "^9.38.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.6",
+    "prettier": "^3.6.2"
+  }
+}
