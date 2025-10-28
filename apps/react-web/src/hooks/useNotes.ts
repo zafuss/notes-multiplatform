@@ -1,5 +1,5 @@
 import type { Note } from '@/types/note';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { uuid } from '@/lib/uuid';
 import { saveNotes } from '@/lib/storage';
 
@@ -7,8 +7,20 @@ export function useNotes() {
   const [notes, setNotes] = useState<Note[]>([]);
 
   useEffect(() => {
-    // setNotes(loadNotes());
+    setNotes(loadNotes());
   }, []);
+
+  function loadNotes(): Note[] {
+    const notesJson = localStorage.getItem('notes_app_storage_key_v1');
+    if (notesJson) {
+      try {
+        return JSON.parse(notesJson) as Note[];
+      } catch {
+        return [];
+      }
+    }
+    return [];
+  }
 
   function createNote(title: string, content: string) {
     const newNote: Note = {
@@ -38,9 +50,12 @@ export function useNotes() {
     saveNotes(next);
   }
 
-  function getNoteById(id: string) {
-    return notes.find(n => n.id === id);
-  }
+  const getNoteById = useCallback(
+    (id: string) => {
+      return notes.find(n => n.id === id);
+    },
+    [notes]
+  );
 
   const sortedNotes = [...notes].sort((a, b) => b.updatedAt - a.updatedAt);
 
