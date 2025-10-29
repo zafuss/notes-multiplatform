@@ -23,7 +23,7 @@
         "dart format"
     ],
     "apps/ios-notes/**/*.swift": [
-        "swift format ."
+        "swift format"
     ]
     },  
   "devDependencies": {
