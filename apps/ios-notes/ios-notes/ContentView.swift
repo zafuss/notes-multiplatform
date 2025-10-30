@@ -8,14 +8,18 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject var api = ApiEnv(api: ApiStorageImpl())
+    @StateObject var mainVM = MainViewModel()
+    
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+            NavigationStack {
+                NoteListScreen()
+            }
+            .environmentObject(mainVM)
+            .environmentObject(api)
         }
-        .padding()
+
     }
 }
 
