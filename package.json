@@ -19,7 +19,7 @@
     "packages/**/*.{json,md,css,scss,html}": [
         "prettier --write --ignore-unknown"
     ],
-    "apps/flutter-notes/**/*.dart": [
+    "apps/flutter_notes/**/*.dart": [
         "dart format"
     ],
     "apps/ios-notes/**/*.swift": [
